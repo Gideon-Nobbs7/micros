@@ -4,8 +4,26 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-
     ports:
-      - 8000:8000
+      - "8000:8000"
     volumes:
       - .:/app
+    networks:
+      - mynetwork
+
+  # db:
+  #   image: postgres
+  #   restart: always
+  #   environment:
+  #     - POSTGRES_DB=admin
+  #     - POSTGRES_USER=root
+  #     - POSTGRES_PASSWORD=root
+  #   volumes:
+  #     - ./dBdata/db:/var/lib/postgresql/data
+  #   ports:
+  #     - "5432:5432"
+  #   networks:
+  #     - mynetwork
+
+networks:
+  mynetwork:
