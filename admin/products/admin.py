@@ -4,4 +4,3 @@ from .models import *
 
 
 admin.site.register(Fare)
-admin.site.register(User)

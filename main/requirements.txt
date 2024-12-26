@@ -1,7 +1,0 @@
-Flask
-Flask-SQLAlchemy
-Flask-Migrate
-Flask-Script
-Flask-Cors
-requests
-pika

@@ -1,14 +1,15 @@
 from django.urls import path, include
-from .views import ProductViewset
+from .views import FareViewset, UserAPIView
 
 urlpatterns = [
-    path("products", ProductViewset.as_view({
+    path("fares", FareViewset.as_view({
         'get':'list',
         'post':'create'
     })),
-    path("products/<str:pk>", ProductViewset.as_view({
+    path("fares/<str:pk>", FareViewset.as_view({
         'get':'retrieve',
         'put':'update',
         'delete':'destroy'
-    }))
+    })),
+    path("user", UserAPIView.as_view())
 ]
