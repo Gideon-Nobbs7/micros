@@ -4,6 +4,7 @@ WORKDIR /app
 
 COPY requirements.txt /app/requirements.txt
 
+
 FROM build as development
 
 ENV PYTHONDONTWRITEBYTECODE 1
