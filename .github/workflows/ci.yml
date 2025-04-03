@@ -21,7 +21,6 @@ jobs:
             
             - name: Install Dependencies
               run: |
-                pip -m pip install --upgrade pip
                 pip install -r requirements.txt
             
             - name: Echo python version
