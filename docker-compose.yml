@@ -3,7 +3,7 @@ services:
     image: micros_admin
     build:
       dockerfile: ./admin/Dockerfile 
-      target: dev
+      target: development
     networks:
       - micros-network
     ports:
@@ -20,7 +20,7 @@ services:
     image: micros_fastapi
     build:
       dockerfile: ./fastapi/Dockerfile 
-      target: dev
+      target: development
     volumes:
       - type: bind
         source: ./fastapi
