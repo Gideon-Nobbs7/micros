@@ -1,0 +1,35 @@
+services:
+  admin-service:
+    image: micros_admin
+    build:
+      dockerfile: ./admin/Dockerfile 
+      target: dev
+    networks:
+      - micros-network
+    ports:
+      - 8000:8000
+    volumes:
+      - ./admin/db.sqlite3:/app/db.sqlite3:rw 
+      - type: bind
+        source: ./admin 
+        target: /app/
+    environment:
+      - AMQP_KEY=${AMQP_KEY}
+
+  fastapi-service:
+    image: micros_fastapi
+    build:
+      dockerfile: ./fastapi/Dockerfile 
+      target: dev
+    volumes:
+      - type: bind
+        source: ./fastapi
+        target: /app/
+    ports:
+      - 8001:8001
+    networks:
+      - micros-network
+    env_file:
+      - ./.env
+    environment:
+      - AMQP_KEY=${AMQP_KEY}
