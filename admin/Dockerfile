@@ -15,6 +15,7 @@ COPY . /app
 
 CMD [ "python", "manage.py", "runserver" ]
 
+
 FROM build as production
 
 ENV PYTHONDONTWRITEBYTECODE 1
