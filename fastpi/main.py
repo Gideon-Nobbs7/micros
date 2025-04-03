@@ -28,17 +28,17 @@ class FarePlayerSchema(BaseModel):
     user_id: int
 
 
-@app.on_event("startup")
-async def startup():
-    loop = asyncio.get_event_loop()
-    connection = await aio_pika.connect(url, loop=loop)
-    channel = await connection.channel()
-    queue = await channel.declare_queue("main")
+# @app.on_event("startup")
+# async def startup():
+#     loop = asyncio.get_event_loop()
+#     connection = await aio_pika.connect(url, loop=loop)
+#     channel = await connection.channel()
+#     queue = await channel.declare_queue("main")
     
-    async def process_message(message: aio_pika.IncomingMessage):
-        callback_handler = Callback()
-        await callback_handler.process_message(message)
-    await queue.consume(process_message)
+#     async def process_message(message: aio_pika.IncomingMessage):
+#         callback_handler = Callback()
+#         await callback_handler.process_message(message)
+#     await queue.consume(process_message)
 
 
 
