@@ -18,6 +18,7 @@ jobs:
               with:
                 python-version: '3.12'
             
-            - name: Echo python version
-              run: python --version
+            - name: Run tests
+              run: |
+                pytest fastpi/tests
               
