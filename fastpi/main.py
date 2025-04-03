@@ -5,6 +5,7 @@ from db.databaseConnect import engine
 from db import models
 from sqlalchemy.orm import Session
 from consumer import url, callback
+from new_consumer import Callback
 import uvicorn, aio_pika, asyncio, requests
 from typing import List
 
@@ -33,7 +34,11 @@ async def startup():
     connection = await aio_pika.connect(url, loop=loop)
     channel = await connection.channel()
     queue = await channel.declare_queue("main")
-    await queue.consume(callback)
+    
+    async def process_message(message: aio_pika.IncomingMessage):
+        callback_handler = Callback()
+        await callback_handler.process_message(message)
+    await queue.consume(process_message)
 
 
 

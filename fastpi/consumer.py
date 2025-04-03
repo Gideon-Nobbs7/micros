@@ -1,19 +1,19 @@
-import json, aio_pika, os
+import pika, time, json, aio_pika, os
 from db.models import Fare
 from utils import get_db
 from dotenv import load_dotenv
 from pathlib import Path
 # from decouple import config
 
-BASE_DIR = Path(__file__).resolve().parent
-env_path = BASE_DIR / ".env"
-
+env_path = Path(".") / ".env"
 load_dotenv(dotenv_path=env_path)
 
-url = str(os.environ.get("AMQP_URL"))
+url = os.getenv("AMQP_URL")
+print(url)
 
 if url is None:
-    url = "AMQP_URL"
+    url = "amqps://jyzdcjde:XK-10u8Wiy8xM8gUWeNo_liUr0wSMsoe@rattlesnake.rmq.cloudamqp.com/jyzdcjde"
+
 
 def receiving_msg(msg):
     print("Getting message from broker")
