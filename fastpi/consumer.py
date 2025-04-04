@@ -8,11 +8,13 @@ from pathlib import Path
 env_path = Path(".") / ".env"
 load_dotenv(dotenv_path=env_path)
 
+load_dotenv()
+
 url = os.getenv("AMQP_URL")
 print(url)
 
 if url is None:
-    url = "amqps://jyzdcjde:XK-10u8Wiy8xM8gUWeNo_liUr0wSMsoe@rattlesnake.rmq.cloudamqp.com/jyzdcjde"
+    url = os.environ.get("AMQP_URL")
 
 
 def receiving_msg(msg):
