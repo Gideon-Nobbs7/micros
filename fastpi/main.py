@@ -15,7 +15,7 @@ app = FastAPI()
 models.Base.metadata.create_all(bind=engine)
 
 
-
+# Response model
 class FareSchema(BaseModel):
     id: int
     location: str
