@@ -10,8 +10,9 @@ load_dotenv(dotenv_path=env_path)
 
 load_dotenv()
 
+
 url = os.getenv("AMQP_URL")
-print(url)
+
 
 if url is None:
     url = os.environ.get("AMQP_URL")
