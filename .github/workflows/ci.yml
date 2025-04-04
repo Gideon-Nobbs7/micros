@@ -27,8 +27,8 @@ jobs:
                 else
                     echo "No requirements.txt found"
                 fi
-            
+              
             - name: Run tests
-              run: |
+              run: |                      
                 pytest fastpi/tests
               
