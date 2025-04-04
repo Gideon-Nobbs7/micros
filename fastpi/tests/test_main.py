@@ -56,6 +56,7 @@ def test_db():
     db.close()
     models.Base.metadata.drop_all(bind=engine)
 
+
 # Fixture for the test client
 @pytest.fixture
 def client(test_db):
@@ -79,6 +80,7 @@ def test_get_all_fares(client):
     assert fares[0]["location"] == "Mountain Trek"
     assert fares[1]["price"] == 50
     assert fares[2]["difficulty"] == "Medium"
+
 
 # Test the like endpoint with mocked request
 @patch("requests.get")
