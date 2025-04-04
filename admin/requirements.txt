@@ -28,6 +28,7 @@ future==0.18.3
 gunicorn==21.2.0
 httplib2==0.22.0
 hvac==2.0.0
+httpx
 idna==3.4
 Jinja2==3.1.2
 jmespath==1.0.1
