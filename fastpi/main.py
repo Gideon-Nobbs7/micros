@@ -2,12 +2,13 @@ from typing import List
 
 import requests
 import uvicorn
-from db import models
-from db.databaseConnect import engine
+from .db import models
+from .db.databaseConnect import engine
 from fastapi import Depends, FastAPI
 from pydantic import BaseModel
 from sqlalchemy.orm import Session
-from utils import get_db
+from .utils import get_db
+
 
 app = FastAPI()
 models.Base.metadata.create_all(bind=engine)
