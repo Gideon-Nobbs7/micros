@@ -45,4 +45,5 @@ jobs:
               run: |
                 black admin/ fastpi/
                 isort admin/ fastpi/
+                ruff check admin/ fastpi/ --fix
               

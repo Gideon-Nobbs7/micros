@@ -1,17 +1,12 @@
-import asyncio
 from typing import List
 
-import aio_pika
 import requests
 import uvicorn
+from db import models
+from db.databaseConnect import engine
 from fastapi import Depends, FastAPI
 from pydantic import BaseModel
 from sqlalchemy.orm import Session
-
-from consumer import callback, url
-from db import models
-from db.databaseConnect import engine
-from new_consumer import Callback
 from utils import get_db
 
 app = FastAPI()

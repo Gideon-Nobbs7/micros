@@ -1,8 +1,12 @@
-import pika, time, json, aio_pika, os
-from db.models import Fare
-from utils import get_db
-from dotenv import load_dotenv
+import json
+import os
 from pathlib import Path
+
+import aio_pika
+from db.models import Fare
+from dotenv import load_dotenv
+from utils import get_db
+
 # from decouple import config
 
 env_path = Path(".") / ".env"
@@ -26,7 +30,6 @@ def receiving_msg(msg):
     return
 
 
-
 async def callback(message: aio_pika.IncomingMessage):
     db = next(get_db())
     async with message.process():
@@ -37,25 +40,25 @@ async def callback(message: aio_pika.IncomingMessage):
 
             if message.content_type == "new_fare":
                 fare = Fare(
-                    id=data['id'], 
-                    location=data['location'], 
-                    price=data['price'], 
-                    difficulty=data['difficulty']
+                    id=data["id"],
+                    location=data["location"],
+                    price=data["price"],
+                    difficulty=data["difficulty"],
                 )
                 print(f"Type>>> {type(fare.id)}")
                 db.add(fare)
                 db.commit()
                 db.refresh(fare)
-            
+
             elif message.content_type == "fare_updated":
-                fare = db.query(Fare).filter(Fare.id == data['id']).first()
+                fare = db.query(Fare).filter(Fare.id == data["id"]).first()
                 print(type(fare.id))
-                fare.location = data['location']
-                fare.price = data['price']
-                fare.difficulty = data['difficulty']
+                fare.location = data["location"]
+                fare.price = data["price"]
+                fare.difficulty = data["difficulty"]
                 db.commit()
                 db.refresh(fare)
-            
+
             elif message.content_type == "fare_deleted":
                 fare = db.query(Fare).filter(Fare.id == int(data)).first()
                 if fare:
@@ -66,7 +69,3 @@ async def callback(message: aio_pika.IncomingMessage):
                     print(f"Fare with ID {data['id']} does not exist")
         finally:
             db.close()
-
-
-
-
