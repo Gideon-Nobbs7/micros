@@ -29,5 +29,5 @@ jobs:
               
             - name: Run tests
               run: |                      
-                pytest fastpi/tests
+                pytest fastpi/tests -v --cov=fastpi
               
