@@ -43,5 +43,7 @@ jobs:
             
             - name: Run linters
               run: |
+                flake8 .
                 black .
+                isort .
               
