@@ -1,6 +1,7 @@
-import pika
 import logging
 import time
+
+import pika
 
 # Set up logging to both console and file
 

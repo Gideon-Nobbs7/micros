@@ -1,7 +1,8 @@
-import pika
-import json, os
-from dotenv import load_dotenv
+import json
+import os
 
+import pika
+from dotenv import load_dotenv
 
 load_dotenv()
 

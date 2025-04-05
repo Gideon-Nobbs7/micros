@@ -44,5 +44,5 @@ jobs:
             - name: Run linters
               run: |
                 black .
-                isort .
+                isort admin/ fastpi/
               

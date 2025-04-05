@@ -1,12 +1,15 @@
+import json
+import random
+
 from django.shortcuts import render
-from rest_framework import viewsets
-from rest_framework.views import APIView
+from rest_framework import status, viewsets
 from rest_framework.response import Response
-from rest_framework import status 
+from rest_framework.views import APIView
+
 from .models import Fare, User
 from .producer import publish_to_queue
 from .serializers import FareSerializer
-import json, random
+
 # Create your views here.
 
 
