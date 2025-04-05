@@ -43,5 +43,5 @@ jobs:
             
             - name: Run linters
               run: |
-                black ./...
+                black .
               
