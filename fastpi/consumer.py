@@ -3,9 +3,9 @@ import os
 from pathlib import Path
 
 import aio_pika
-from db.models import Fare
+from .db.models import Fare
 from dotenv import load_dotenv
-from utils import get_db
+from .utils import get_db
 
 # from decouple import config
 
