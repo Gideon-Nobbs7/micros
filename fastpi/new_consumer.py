@@ -8,6 +8,7 @@ from dotenv import load_dotenv
 from fastapi import HTTPException
 from utils import get_db
 
+
 load_dotenv()
 
 
