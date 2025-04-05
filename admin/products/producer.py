@@ -1,8 +1,12 @@
 import pika
-import json
+import json, os
+from dotenv import load_dotenv
+
+
+load_dotenv()
 
 def publish_to_queue(method, body):
-    url = "amqps://jyzdcjde:XK-10u8Wiy8xM8gUWeNo_liUr0wSMsoe@rattlesnake.rmq.cloudamqp.com/jyzdcjde"
+    url = os.getenv("AMQP_URL")
     params = pika.URLParameters(url)
     params.socket_timeout = 2
 
