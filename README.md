@@ -1,4 +1,5 @@
 # micros
+![Test Coverage](https://github.com/Gideon-Nobbs7/micros/actions/workflows/ci.yml/badge.svg)
 
 Welcome to my message broker microservices which enables communication between different components of the app.
 

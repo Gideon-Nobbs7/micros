@@ -1,14 +1,14 @@
-from django.shortcuts import render
-from rest_framework import viewsets
-from rest_framework.views import APIView
+import random
+
+from rest_framework import status, viewsets
 from rest_framework.response import Response
-from rest_framework import status 
+from rest_framework.views import APIView
+
 from .models import Fare, User
 from .producer import publish_to_queue
 from .serializers import FareSerializer
-import json, random
-# Create your views here.
 
+# Create your views here.
 
 
 class FareViewset(viewsets.ViewSet):
@@ -49,6 +49,4 @@ class UserAPIView(APIView):
     def get(self, _):
         users = User.objects.all()
         user = random.choice(users)
-        return Response({
-            "id": user.id
-        })
+        return Response({"id": user.id})

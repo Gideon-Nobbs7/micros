@@ -1,5 +1,4 @@
-from db.databaseConnect import sessionLocal
-
+from .db.databaseConnect import sessionLocal
 
 def get_db():
     try:
