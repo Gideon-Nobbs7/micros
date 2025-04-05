@@ -1,16 +1,16 @@
 from unittest.mock import MagicMock, patch
 
 import pytest
-from db import models
+from ..db import models
 from fastapi import HTTPException
 from fastapi.testclient import TestClient
 
 # Import the FastAPI app and dependencies
-from main import app
+from ..main import app
 from sqlalchemy import create_engine
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker
-from utils import get_db
+from ..utils import get_db
 
 # Create test database
 SQLALCHEMY_DATABASE_URL = "sqlite:///./test.db"
