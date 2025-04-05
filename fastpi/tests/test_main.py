@@ -1,14 +1,13 @@
 import pytest
 from fastapi import HTTPException
 from fastapi.testclient import TestClient
-from unittest.mock import patch, MagicMock, AsyncMock
-import asyncio
+from unittest.mock import patch, MagicMock
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 from sqlalchemy.ext.declarative import declarative_base
 
 # Import the FastAPI app and dependencies
-from main import app, FareSchema
+from main import app
 from db import models
 from utils import get_db
 
