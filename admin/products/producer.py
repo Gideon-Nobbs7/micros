@@ -6,6 +6,7 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
+
 def publish_to_queue(method, body):
     url = os.getenv("AMQP_URL")
     params = pika.URLParameters(url)
@@ -14,14 +15,14 @@ def publish_to_queue(method, body):
     try:
         connection = pika.BlockingConnection(params)
         channel = connection.channel()
-        channel.queue_declare(queue='main')
+        channel.queue_declare(queue="main")
 
         properties = pika.BasicProperties(content_type=method)
         channel.basic_publish(
-            exchange='',
-            routing_key='main',
+            exchange="",
+            routing_key="main",
             body=json.dumps(body),
-            properties=properties
+            properties=properties,
         )
         print("[x] Message sent to broker/consumer")
     finally:

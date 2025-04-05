@@ -1,9 +1,13 @@
-import logging
+import os
 import time
 
 import pika
+from dotenv import load_dotenv
+
+load_dotenv()
 
 # Set up logging to both console and file
+
 
 def pdf_process_func(msg):
     print("PDF processing")
@@ -12,21 +16,19 @@ def pdf_process_func(msg):
     print("PDF processing finished")
 
 
-url = "amqps://jyzdcjde:XK-10u8Wiy8xM8gUWeNo_liUr0wSMsoe@rattlesnake.rmq.cloudamqp.com/jyzdcjde"
+url = os.getenv("AMQP_URL")
 params = pika.URLParameters(url)
 
 connection = pika.BlockingConnection(params)
 channel = connection.channel()
-channel.queue_declare(queue='admin')
+channel.queue_declare(queue="admin")
+
 
 def callback(ch, method, properties, body):
     pdf_process_func(body)
 
-channel.basic_consume(
-    queue='admin',
-    on_message_callback=callback,
-    auto_ack=True
-)
+
+channel.basic_consume(queue="admin", on_message_callback=callback, auto_ack=True)
 print(" [*] Waiting for messages. To exit press CTRL+C")
 channel.start_consuming()
 

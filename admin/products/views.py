@@ -13,7 +13,6 @@ from .serializers import FareSerializer
 # Create your views here.
 
 
-
 class FareViewset(viewsets.ViewSet):
     def list(self, request):
         fares = Fare.objects.all()
@@ -52,6 +51,4 @@ class UserAPIView(APIView):
     def get(self, _):
         users = User.objects.all()
         user = random.choice(users)
-        return Response({
-            "id": user.id
-        })
+        return Response({"id": user.id})
