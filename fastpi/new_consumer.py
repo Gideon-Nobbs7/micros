@@ -3,11 +3,11 @@ from os import getenv
 from typing import Any, Dict
 
 import aio_pika
-from .db.models import Fare
 from dotenv import load_dotenv
 from fastapi import HTTPException
-from .utils import get_db
 
+from .db.models import Fare
+from .utils import get_db
 
 load_dotenv()
 

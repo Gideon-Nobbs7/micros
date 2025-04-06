@@ -1,15 +1,16 @@
 from unittest.mock import MagicMock, patch
 
 import pytest
-from ..db import models
 from fastapi import HTTPException
 from fastapi.testclient import TestClient
-
-# Import the FastAPI app and dependencies
-from ..main import app
 from sqlalchemy import create_engine
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker
+
+from ..db import models
+
+# Import the FastAPI app and dependencies
+from ..main import app
 from ..utils import get_db
 
 # Create test database
@@ -70,8 +71,12 @@ def client(test_db):
 # Test the root endpoint
 def test_root_endpoint(client):
     response = client.get("/")
-    assert response.status_code == 200, f"Expected status code 200, got {response.status_code}"
-    assert response.json() == "Server is running", f"Expected 'Server is running', got {response.json()}"
+    assert (
+        response.status_code == 200
+    ), f"Expected status code 200, got {response.status_code}"
+    assert (
+        response.json() == "Server is running"
+    ), f"Expected 'Server is running', got {response.json()}"
 
 
 # Test getting all fares

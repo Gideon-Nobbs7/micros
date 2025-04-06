@@ -13,6 +13,8 @@ services:
       - type: bind
         source: ./admin 
         target: /app/
+    env_file:
+      - ./.env
     environment:
       - AMQP_KEY=${AMQP_KEY}
 
