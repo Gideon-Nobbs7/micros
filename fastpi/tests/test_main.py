@@ -70,8 +70,8 @@ def client(test_db):
 # Test the root endpoint
 def test_root_endpoint(client):
     response = client.get("/")
-    assert response.status_code == 200
-    assert response.json() == "Server is running"
+    assert response.status_code == 200, f"Expected status code 200, got {response.status_code}"
+    assert response.json() == "Server is running", f"Expected 'Server is running', got {response.json()}"
 
 
 # Test getting all fares
