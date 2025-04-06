@@ -47,7 +47,7 @@ async def start():
 
 @app.post("/api/products/{id}/like")
 async def like(id: int):
-    req = requests.get("http://localhost/api/user", timeout=10)
+    req = requests.get("http://localhost/api/user")
     return req
 
 
