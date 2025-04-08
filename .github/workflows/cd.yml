@@ -38,16 +38,16 @@ jobs:
                     type=sha,format=short
                     latest
             
-                    - name: Extract metadata for Fastpi
-                    id: meta
-                    uses: docker/metadata-action@v4
-                    with:
-                      images: ${{ secrets.DOCKER_USERNAME }}/micros_fastpi
-                      tags: |
-                          type=ref,event=branch
-                          type=semver,pattern={{version}}
-                          type=sha,format=short
-                          latest
+            - name: Extract metadata for Fastpi
+              id: meta-id
+              uses: docker/metadata-action@v4
+              with:
+                images: ${{ secrets.DOCKER_USERNAME }}/micros_fastpi
+                tags: |
+                    type=ref,event=branch
+                    type=semver,pattern={{version}}
+                    type=sha,format=short
+                    latest
             
             - name: Debug Tags
               run: |
@@ -68,8 +68,8 @@ jobs:
               with:
                 context: ./fastpi
                 push: true
-                tags: ${{ steps.meta.outputs.tags }}
-                labels: ${{ steps.meta.outputs.labels }}
+                tags: ${{ steps.meta-id.outputs.tags }}
+                labels: ${{ steps.meta-id.outputs.labels }}
                 cache-from: type=gha
                 cache-to: type=gha,mode=max
               
