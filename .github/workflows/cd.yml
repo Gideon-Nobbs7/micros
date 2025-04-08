@@ -46,6 +46,10 @@ jobs:
                           type=sha,format=short
                           latest
             
+            - name: Debug Tags
+              run: |
+                echo "Tag generated: ${{ steps.meta.outputs.tags }}"
+            
             - name: Build and Push Admin Service
               uses: docker/build-push-action@v4
               with:
@@ -65,3 +69,4 @@ jobs:
                 labels: ${{ steps.meta.outputs.labels }}
                 cache-from: type=gha
                 cache-to: type=gha,mode=max
+              
