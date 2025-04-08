@@ -28,17 +28,19 @@ ENV PYTHONUNBUFFERED 1
 
 WORKDIR /app
 
+RUN useradd -r nduser
+
 # RUN --mount=type=cache,target=/root/.cache/pip \
 #     pip install --prefix=install --no-cache-dir -r /app/requirements.txt
 
 COPY --from=build /app/install /usr/local
 
-COPY . /app/
+USER nduser
+
+COPY --chown=nduser . /app/
 
 RUN chmod -R 755 /app
 
 RUN chown -R nduser:nduser /app
-
-USER nduser
 
 CMD [ "python", "manage.py", "runserver" ]

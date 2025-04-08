@@ -34,13 +34,13 @@ RUN useradd -r nduser
 
 COPY --from=build /app/install /usr/local
 
-COPY . /app
+USER nduser
+
+COPY --chown=nduser . /app
 
 RUN chmod -RR 755 /app
 
 RUN chown -R nduser:nduser /app
-
-USER nduser
 
 CMD [ "python", "main.py" ]
 
