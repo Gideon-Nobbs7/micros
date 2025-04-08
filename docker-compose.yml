@@ -16,16 +16,16 @@ services:
     env_file:
       - ./.env
     environment:
-      - AMQP_KEY=${AMQP_KEY}
+      - AMQP_URL=${AMQP_URL}
 
-  fastapi-service:
-    image: micros_fastapi
+  fastpi-service:
+    image: micros_fastpi
     build:
-      dockerfile: ./fastapi/Dockerfile 
+      dockerfile: ./fastpi/Dockerfile 
       target: development
     volumes:
       - type: bind
-        source: ./fastapi
+        source: ./fastpi
         target: /app/
     ports:
       - 8001:8001
@@ -34,4 +34,8 @@ services:
     env_file:
       - ./.env
     environment:
-      - AMQP_KEY=${AMQP_KEY}
+      - AMQP_URL=${AMQP_URL}
+
+
+networks:
+  micros-network:

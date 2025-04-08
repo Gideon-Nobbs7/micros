@@ -4,13 +4,17 @@ WORKDIR /app
 
 COPY requirements.txt /app/requirements.txt
 
+RUN pip install --prefix=/app/install -r requirements.txt
+
 
 FROM build as development
 
 ENV PYTHONDONTWRITEBYTECODE 1
 ENV PYTHONUNBUFFERED 1
 
-RUN pip install -r requirements.txt
+WORKDIR /app
+
+COPY --from=build /app/install /usr/local
 
 COPY . /app
 
@@ -22,8 +26,12 @@ FROM build as production
 ENV PYTHONDONTWRITEBYTECODE 1
 ENV PYTHONUNBUFFERED 1
 
-RUN --mount=type=cache,target=/root/.cache/pip \
-    pip install --no-cache-dir -r /app/requirements.txt
+WORKDIR /app
+
+# RUN --mount=type=cache,target=/root/.cache/pip \
+#     pip install --prefix=install --no-cache-dir -r /app/requirements.txt
+
+COPY --from=build /app/install /usr/local
 
 COPY . /app/
 

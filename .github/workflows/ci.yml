@@ -1,4 +1,4 @@
-name: Micros Workflow
+name: Micros Workflow Integration
 
 on:
     pull_request:
