@@ -35,12 +35,13 @@ RUN useradd -r nduser
 
 COPY --from=build /app/install /usr/local
 
-USER nduser
-
+# Copy files and switch ownership to non-root user
 COPY --chown=nduser . /app/
 
+# Set permissions while still a root user
 RUN chmod -R 755 /app
 
-RUN chown -R nduser:nduser /app
+# Switch to a non-root user
+USER nduser
 
 CMD [ "python", "manage.py", "runserver" ]
